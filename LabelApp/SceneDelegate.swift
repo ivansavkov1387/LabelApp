@@ -16,19 +16,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
+        self.window = window
         
-        let firstViewController = ViewController()
+        let firstViewController = FirstViewController()
         let secondViewController = SecondViewController()
         
         let firstNavigationConroller = UINavigationController(rootViewController: firstViewController)
         let secondNavigationConroller = UINavigationController(rootViewController: secondViewController)
         
+        firstNavigationConroller.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
+        secondNavigationConroller.tabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 1)
+       
         
         let tabBarConroller = UITabBarController()
         tabBarConroller.setViewControllers([firstNavigationConroller, secondNavigationConroller], animated: true)
         
         window.rootViewController = tabBarConroller
-        self.window = window
         window.makeKeyAndVisible()
     }
 
